@@ -14,14 +14,20 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
-test('should intercept posting of 10KB payload', async ({ page }) => {
+test('should intercept POSTing of 10KB payload', async ({ page }) => {
   await page.goto('/?10KB_payload');
   await page.locator('#submit-button').click();
   await delay(1);
 });
 
-test('should intercept posting of 10MB payload', async ({ page }) => {
+test('should intercept POSTing of 10MB payload', async ({ page }) => {
   await page.goto('/?10MB_payload');
+  await page.locator('#submit-button').click();
+  await delay(1);
+});
+
+test('should intercept PUTing of 10MB payload', async ({ page }) => {
+  await page.goto('/?10MB_payload&method=PUT');
   await page.locator('#submit-button').click();
   await delay(1);
 });

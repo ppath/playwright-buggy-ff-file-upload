@@ -22,7 +22,7 @@
       text = '';
     }
     fetch('/api/foo', {
-      method: 'POST',
+      method: searchParams.get('method') || 'POST',
       body: new URLSearchParams({ text }),
     }).then(async response => {
       const text = await response.text();
