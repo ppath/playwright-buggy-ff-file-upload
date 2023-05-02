@@ -1,4 +1,4 @@
-import { APIResponse, expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 
 const delay = (timeInSeconds = 0) => new Promise(resolve => {
   setTimeout(resolve, timeInSeconds * 1000);
@@ -14,25 +14,14 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
-test('should intercept posting of form[enctype=application/x-www-form-urlencoded]', async ({ page }) => {
-  await page.goto('/');
-  await expect(page.locator('text="Browse your files:"')).toBeVisible();
+test('should intercept posting of 10KB payload', async ({ page }) => {
+  await page.goto('/?10KB_payload');
   await page.locator('#submit-button').click();
   await delay(1);
 });
 
-test('should intercept posting of file with size 1023KB', async ({ page }) => {
-  await page.goto('/?multipart');
-  await expect(page.locator('text="Browse your files:"')).toBeVisible();
-  await page.locator('[type=file]').setInputFiles('./test-data/1023KB');
-  await page.locator('#submit-button').click();
-  await delay(1);
-});
-
-test('should intercept posting of file with size 1024KB', async ({ page }) => {
-  await page.goto('/?multipart');
-  await expect(page.locator('text="Browse your files:"')).toBeVisible();
-  await page.locator('[type=file]').setInputFiles('./test-data/1024KB');
+test('should intercept posting of 10MB payload', async ({ page }) => {
+  await page.goto('/?10MB_payload');
   await page.locator('#submit-button').click();
   await delay(1);
 });
