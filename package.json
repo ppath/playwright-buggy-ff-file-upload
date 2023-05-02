@@ -1,0 +1,15 @@
+{
+  "name": "playwright-bug-report-firefox-post-multipart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@playwright/test": "^1.33.0"
+  }
+}
